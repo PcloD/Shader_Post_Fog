@@ -21,7 +21,7 @@
 			#pragma fragment frag
 			
 			#include "UnityCG.cginc"
-			#include "../../CgIncludes/func.cginc"
+			#include "../Shader_CGInclude/func.cginc"
 
 			struct appdata
 			{
@@ -47,10 +47,10 @@
 				o.uv = v.uv;
 				o.uv_depth = v.uv;
 
-				#if UNITY_UV_STARTS_AT_TOP
-					if(_MainTex_TexelSize < 0)
-						o.uv_depth.y = 1-o.uv_depth.y;
-				#endif
+				// #if UNITY_UV_STARTS_AT_TOP
+				// 	if(_MainTex_TexelSize < 0)
+				// 		o.uv_depth.y = 1-o.uv_depth.y;
+				// #endif
 
 				int index = 0;
 				if(v.uv.x < 0.5 && v.uv.y < 0.5){
@@ -63,10 +63,10 @@
 					index = 3;
 				}
 
-				#if UNITY_UV_STARTS_AT_TOP
-				if(_MainTex_TexelSize.y < 0)
-					index = 3 - index;
-				#endif
+				// #if UNITY_UV_STARTS_AT_TOP
+				// if(_MainTex_TexelSize.y < 0)
+				// 	index = 3 - index;
+				// #endif
 
 				o.interpolatedRay = _FrustumCornersRay[index];
 
